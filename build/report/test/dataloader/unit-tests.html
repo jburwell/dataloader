@@ -1,0 +1,425 @@
+<html>
+<head>
+<title>TestNG:  unit-tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>unit-tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>42/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Sep 22 14:20:23 EDT 2010</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (136 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifableSet()'><b>testBuildUnmodifableSet</b><br>Test class: net.cockamamy.dataloader.util.CollectionUtilitiesTest<br>Parameters: [Ljava.lang.Object;@2c31f2a7, [zoo, foo, bar]</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.CollectionUtilitiesTest@66941db6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifableSet()'><b>testBuildUnmodifableSet</b><br>Test class: net.cockamamy.dataloader.util.CollectionUtilitiesTest<br>Parameters: null, []</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.CollectionUtilitiesTest@66941db6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifiableList()'><b>testBuildUnmodifiableList</b><br>Test class: net.cockamamy.dataloader.util.CollectionUtilitiesTest<br>Parameters: [Ljava.lang.Object;@331c89c, [foo, bar, zoo]</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.CollectionUtilitiesTest@66941db6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifiableList()'><b>testBuildUnmodifiableList</b><br>Test class: net.cockamamy.dataloader.util.CollectionUtilitiesTest<br>Parameters: null, []</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.CollectionUtilitiesTest@66941db6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifiableSetFailure()'><b>testBuildUnmodifiableSetFailure</b><br>Test class: net.cockamamy.dataloader.util.CollectionUtilitiesTest<br>Parameters: [Ljava.lang.String;@39697b67</td>
+<td><div><pre>java.lang.IllegalStateException: Attempt to add a duplicate element, foo, to set.
+	at net.cockamamy.dataloader.util.CollectionUtilities.buildUnmodifiableSet(CollectionUtilities.java:78)
+	at net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifiableSetFailure(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace184766585", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace184766585'><pre>java.lang.IllegalStateException: Attempt to add a duplicate element, foo, to set.
+	at net.cockamamy.dataloader.util.CollectionUtilities.buildUnmodifiableSet(CollectionUtilities.java:78)
+	at net.cockamamy.dataloader.util.CollectionUtilitiesTest.testBuildUnmodifiableSetFailure(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:640)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:627)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:799)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1103)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1098)
+	at org.testng.TestRunner.privateRun(TestRunner.java:727)
+	at org.testng.TestRunner.run(TestRunner.java:581)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:315)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:310)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:272)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:221)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:40)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:83)
+	at org.testng.internal.thread.ThreadUtil$CountDownLatchedRunnable.run(ThreadUtil.java:151)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+</pre></div></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.CollectionUtilitiesTest@66941db6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.EnumPropertyConverterTest.testConvertValueFailure()'><b>testConvertValueFailure</b><br>Test class: net.cockamamy.dataloader.converter.EnumPropertyConverterTest<br>Parameters: ZOO</td>
+<td><div><pre>net.cockamamy.dataloader.PropertyConversionException: Unable to convert ZOO to net.cockamamy.dataloader.converter.MockEnum.
+	at net.cockamamy.dataloader.converter.EnumPropertyConverter.convertValue(EnumPropertyConverter.java:60)
+	at net.cockamamy.dataloader.converter.EnumPropertyConverter.convertValue(EnumPropertyConverter.java:19)
+	at net.cockamamy.dataloader.converter.AbstractPropertyConverterTest.testConvertValueFailure(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1629943847", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1629943847'><pre>net.cockamamy.dataloader.PropertyConversionException: Unable to convert ZOO to net.cockamamy.dataloader.converter.MockEnum.
+	at net.cockamamy.dataloader.converter.EnumPropertyConverter.convertValue(EnumPropertyConverter.java:60)
+	at net.cockamamy.dataloader.converter.EnumPropertyConverter.convertValue(EnumPropertyConverter.java:19)
+	at net.cockamamy.dataloader.converter.AbstractPropertyConverterTest.testConvertValueFailure(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:640)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:627)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:799)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1103)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1098)
+	at org.testng.TestRunner.privateRun(TestRunner.java:727)
+	at org.testng.TestRunner.run(TestRunner.java:581)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:315)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:310)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:272)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:221)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:40)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:83)
+	at org.testng.internal.thread.ThreadUtil$CountDownLatchedRunnable.run(ThreadUtil.java:151)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+</pre></div></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.EnumPropertyConverterTest@ee51b2c</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.DatePropertyConverterTest.testConvertValueFailure()'><b>testConvertValueFailure</b><br>Test class: net.cockamamy.dataloader.converter.DatePropertyConverterTest<br>Parameters: aaa</td>
+<td><div><pre>net.cockamamy.dataloader.PropertyConversionException: Unable to convert aaa to java.util.Date.
+	at net.cockamamy.dataloader.converter.DatePropertyConverter.convertValue(DatePropertyConverter.java:87)
+	at net.cockamamy.dataloader.converter.DatePropertyConverter.convertValue(DatePropertyConverter.java:21)
+	at net.cockamamy.dataloader.converter.AbstractPropertyConverterTest.testConvertValueFailure(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1349970087", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1349970087'><pre>net.cockamamy.dataloader.PropertyConversionException: Unable to convert aaa to java.util.Date.
+	at net.cockamamy.dataloader.converter.DatePropertyConverter.convertValue(DatePropertyConverter.java:87)
+	at net.cockamamy.dataloader.converter.DatePropertyConverter.convertValue(DatePropertyConverter.java:21)
+	at net.cockamamy.dataloader.converter.AbstractPropertyConverterTest.testConvertValueFailure(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:640)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:627)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:799)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1103)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1098)
+	at org.testng.TestRunner.privateRun(TestRunner.java:727)
+	at org.testng.TestRunner.run(TestRunner.java:581)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:315)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:310)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:272)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:221)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:40)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:83)
+	at org.testng.internal.thread.ThreadUtil$CountDownLatchedRunnable.run(ThreadUtil.java:151)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+</pre></div></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.DatePropertyConverterTest@635aed57</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.StringPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.StringPropertyConverterTest<br>Parameters: foo, foo</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.StringPropertyConverterTest@900bac2</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.StringPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.StringPropertyConverterTest<br>Parameters: null, null</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.StringPropertyConverterTest@900bac2</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.StringPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.StringPropertyConverterTest<br>Parameters: , </td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.StringPropertyConverterTest@900bac2</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.EnumPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.EnumPropertyConverterTest<br>Parameters: FOO, FOO</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.EnumPropertyConverterTest@ee51b2c</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.EnumPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.EnumPropertyConverterTest<br>Parameters: BAR, BAR</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.EnumPropertyConverterTest@ee51b2c</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.EnumPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.EnumPropertyConverterTest<br>Parameters: , null</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.EnumPropertyConverterTest@ee51b2c</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.EnumPropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.EnumPropertyConverterTest<br>Parameters: null, null</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.EnumPropertyConverterTest@ee51b2c</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.DatePropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.DatePropertyConverterTest<br>Parameters: 01/01/2008, Tue Jan 01 00:00:00 EST 2008</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.DatePropertyConverterTest@635aed57</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.DatePropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.DatePropertyConverterTest<br>Parameters: null, null</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.DatePropertyConverterTest@635aed57</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.converter.DatePropertyConverterTest.testConvertValueSuccess()'><b>testConvertValueSuccess</b><br>Test class: net.cockamamy.dataloader.converter.DatePropertyConverterTest<br>Parameters: , null</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.converter.DatePropertyConverterTest@635aed57</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsBlank()'><b>testIsBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: , true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsBlank()'><b>testIsBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters:  , true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsBlank()'><b>testIsBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters:         , true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsBlank()'><b>testIsBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: null, true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsBlank()'><b>testIsBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: foo, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: foo, foo, true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: foo, bar, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: null, null, true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: foo, null, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: null, bar, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: 1, 1, true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: 1, 2, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: 1, null, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.ObjectUtilitiesTest.testIsEqualTo()'><b>testIsEqualTo</b><br>Test class: net.cockamamy.dataloader.util.ObjectUtilitiesTest<br>Parameters: null, 2, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.ObjectUtilitiesTest@63cd66ea</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsNotBlank()'><b>testIsNotBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: , true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsNotBlank()'><b>testIsNotBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters:  , true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsNotBlank()'><b>testIsNotBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters:         , true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsNotBlank()'><b>testIsNotBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: null, true</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testIsNotBlank()'><b>testIsNotBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: foo, false</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.FileUtilitiesTest.testOpenFileNotFound()'><b>testOpenFileNotFound</b><br>Test class: net.cockamamy.dataloader.util.FileUtilitiesTest</td>
+<td><div><pre>java.io.FileNotFoundException: -Tmp- does not contain 5bba64da-e217-46be-9fb9-a91bf5d77eb1
+	at net.cockamamy.dataloader.util.FileUtilities.openFile(FileUtilities.java:91)
+	at net.cockamamy.dataloader.util.FileUtilitiesTest.testOpenFileNotFound(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+... Removed 20 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace649045642", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace649045642'><pre>java.io.FileNotFoundException: -Tmp- does not contain 5bba64da-e217-46be-9fb9-a91bf5d77eb1
+	at net.cockamamy.dataloader.util.FileUtilities.openFile(FileUtilities.java:91)
+	at net.cockamamy.dataloader.util.FileUtilitiesTest.testOpenFileNotFound(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:640)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:627)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:799)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1103)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:137)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:121)
+	at org.testng.TestRunner.runWorkers(TestRunner.java:1098)
+	at org.testng.TestRunner.privateRun(TestRunner.java:727)
+	at org.testng.TestRunner.run(TestRunner.java:581)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:315)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:310)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:272)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:221)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:40)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:83)
+	at org.testng.internal.thread.ThreadUtil$CountDownLatchedRunnable.run(ThreadUtil.java:151)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:637)
+</pre></div></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.FileUtilitiesTest@62acc57</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.FileUtilitiesTest.testOpenFileSuccess()'><b>testOpenFileSuccess</b><br>Test class: net.cockamamy.dataloader.util.FileUtilitiesTest</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.FileUtilitiesTest@62acc57</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testToBlank()'><b>testToBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: , </td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testToBlank()'><b>testToBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters:          , </td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testToBlank()'><b>testToBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: null, </td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+<tr>
+<td title='net.cockamamy.dataloader.util.StringUtilitiesTest.testToBlank()'><b>testToBlank</b><br>Test class: net.cockamamy.dataloader.util.StringUtilitiesTest<br>Parameters: foo, foo</td>
+<td></td>
+<td>0</td>
+<td>net.cockamamy.dataloader.util.StringUtilitiesTest@421fbfd6</td></tr>
+</table><p>
+</body>
+</html>

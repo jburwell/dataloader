@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+ 
+<suite name="dataloader" verbose="1" >
+
+	<test name="unit-tests">
+		<packages>
+ 			<package name="net.cockamamy.dataloader.*" />
+   		</packages>
+ 	</test>
+ 
+</suite>

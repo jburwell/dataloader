@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unit-tests" failures="0" tests="42" time="0.136" errors="0">
+  <properties/>
+  <testcase name="testConvertValueSuccess" time="0.0030" classname="net.cockamamy.dataloader.converter.StringPropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.StringPropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.StringPropertyConverterTest"/>
+  <testcase name="testConvertValueFailure" time="0.0060" classname="net.cockamamy.dataloader.converter.EnumPropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.EnumPropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.EnumPropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.EnumPropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.EnumPropertyConverterTest"/>
+  <testcase name="testConvertValueFailure" time="0.0010" classname="net.cockamamy.dataloader.converter.DatePropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0010" classname="net.cockamamy.dataloader.converter.DatePropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.DatePropertyConverterTest"/>
+  <testcase name="testConvertValueSuccess" time="0.0" classname="net.cockamamy.dataloader.converter.DatePropertyConverterTest"/>
+  <testcase name="testBuildUnmodifableSet" time="0.0" classname="net.cockamamy.dataloader.util.CollectionUtilitiesTest"/>
+  <testcase name="testBuildUnmodifableSet" time="0.0" classname="net.cockamamy.dataloader.util.CollectionUtilitiesTest"/>
+  <testcase name="testBuildUnmodifiableList" time="0.0" classname="net.cockamamy.dataloader.util.CollectionUtilitiesTest"/>
+  <testcase name="testBuildUnmodifiableList" time="0.0" classname="net.cockamamy.dataloader.util.CollectionUtilitiesTest"/>
+  <testcase name="testBuildUnmodifiableSetFailure" time="0.0" classname="net.cockamamy.dataloader.util.CollectionUtilitiesTest"/>
+  <testcase name="testOpenFileNotFound" time="0.0010" classname="net.cockamamy.dataloader.util.FileUtilitiesTest"/>
+  <testcase name="testOpenFileSuccess" time="0.0010" classname="net.cockamamy.dataloader.util.FileUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0010" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsEqualTo" time="0.0" classname="net.cockamamy.dataloader.util.ObjectUtilitiesTest"/>
+  <testcase name="testIsBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsBlank" time="0.0010" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsNotBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsNotBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsNotBlank" time="0.0010" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsNotBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testIsNotBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testToBlank" time="0.0010" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testToBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testToBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+  <testcase name="testToBlank" time="0.0" classname="net.cockamamy.dataloader.util.StringUtilitiesTest"/>
+</testsuite>
