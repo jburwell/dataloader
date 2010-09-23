@@ -1,7 +1,7 @@
 package net.cockamamy.dataloader;
 
-public interface DataLoader<T> {
+public interface DataLoader {
 
-	void loadData(DataLoaderConsumer<T> aConsumer);
+	void loadData(DataLoaderConsumer aConsumer);
 
 }

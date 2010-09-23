@@ -1,7 +1,9 @@
 package net.cockamamy.dataloader;
 
-public interface DataLoaderConsumer<T> {
+import java.util.*;
 
-	void consume(T anObject);
+public interface DataLoaderConsumer {
+
+	void consume(Map<String, Object> theData);
 	
 }

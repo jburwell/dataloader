@@ -39,6 +39,10 @@ import net.cockamamy.dataloader.util.*;
 
 /**
  * 
+ * A string value delimited by a character representing a series of fields. This
+ * class implements the {@link Iterable} permitting the iteration of the fields
+ * using the Java 1.5 enhanced for loop.
+ * 
  * @author jburwell
  * 
  * @since 1.0.0
@@ -46,31 +50,50 @@ import net.cockamamy.dataloader.util.*;
  */
 public final class DelimitedString implements Iterable<String> {
 
-	private static final char DEFAULT_DELIMITER = ',';
-
-	private final String myLine;
+	private final String myValue;
 
 	private final char myDelimter;
 
 	private final Iterator<String> myIterator;
 
-	public DelimitedString(String aLine, char aDelimiter) {
+	public DelimitedString(String aValue, char aDelimiter) {
 
 		super();
 
-		this.myLine = aLine;
+		this.myValue = aValue;
 		this.myDelimter = aDelimiter;
-		this.myIterator = isNotBlank(this.myLine) ? new DelimitedLineIterator(
-				this.myLine, this.myDelimter) : new NullIterator<String>();
+		this.myIterator = isNotBlank(this.myValue) ? new DelimitedLineIterator(
+				this.myValue, this.myDelimter) : new NullIterator<String>();
 
 	}
 
-	public DelimitedString(String aLine) {
+	/**
+	 * 
+	 * @return The character that delimits the fields
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
+	public char getDelimter() {
 
-		this(aLine, DEFAULT_DELIMITER);
+		return this.myDelimter;
 
 	}
 
+	/**
+	 * 
+	 * @return The raw, unparsed string value
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
+	public String getValue() {
+
+		return this.myValue;
+
+	}
+
+	// BEGIN: Iterable implementation
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -81,12 +104,7 @@ public final class DelimitedString implements Iterable<String> {
 		return this.myIterator;
 
 	}
-
-	public String getLine() {
-
-		return this.myLine;
-
-	}
+	// END: Iterable implementation
 
 	// BEGIN: Object implementation
 	@Override
@@ -96,7 +114,7 @@ public final class DelimitedString implements Iterable<String> {
 
 			DelimitedString thatLine = (DelimitedString) thatObject;
 
-			if (isEqualTo(this.myLine, thatLine.getLine())
+			if (isEqualTo(this.myValue, thatLine.getValue())
 					&& this.myDelimter == thatLine.getDelimter()) {
 
 				return true;
@@ -115,7 +133,7 @@ public final class DelimitedString implements Iterable<String> {
 		int aHashCode = 37;
 
 		aHashCode = (aHashCode * 17) + this.myDelimter;
-		aHashCode = (aHashCode * 17) + this.myLine != null ? this.myLine
+		aHashCode = (aHashCode * 17) + this.myValue != null ? this.myValue
 				.hashCode() : 0;
 
 		return aHashCode;
@@ -126,17 +144,11 @@ public final class DelimitedString implements Iterable<String> {
 	public String toString() {
 
 		return format("Delimited Line (delimiter: %1$c, line: %2$s)",
-				this.myDelimter, this.myLine);
+				this.myDelimter, this.myValue);
 
 	}
 
 	// END: Object implementation
-
-	public char getDelimter() {
-
-		return this.myDelimter;
-
-	}
 
 	private static final class DelimitedLineIterator implements
 			Iterator<String> {

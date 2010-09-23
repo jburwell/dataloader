@@ -28,94 +28,83 @@
  */
 package net.cockamamy.dataloader.delimitedfile;
 
-import static java.lang.String.*;
+import static java.util.Collections.*;
 
-import static net.cockamamy.dataloader.util.FileUtilities.*;
-
-import java.io.*;
 import java.util.*;
-
-import net.cockamamy.dataloader.*;
 
 /**
  * 
- * Loads data from a delimited file based on a set of column definitions and
- * converts it to rich objects. It then delegates processing of the processed
- * data to passed consumer.
+ * Builds a set of objects from a {@link DelimitedString} assuming each a single
+ * {@link DelimitedString} instance maps to a object <code>T</code> instance.
+ * 
+ * @param <T>
+ *            The type of object built by this builder
  * 
  * @author jburwell
  * 
  * @since 1.0.0
  * 
  */
-final class DelimitedFileDataLoader implements DataLoader {
+public final class RecordParser {
 
-	private final File myFile;
-
-	private final char myDelimiter;
-
-	private final RecordParser myParser;
+	private final List<ColumnDefinition> myColumnDefinitions;
 
 	/**
-	 * @param aFile
+	 * 
 	 * @param theColumnDefinitions
-	 *            The definition of each column a delimited file provided in the
-	 *            order they in the file.
-	 * @param aDelimiter
-	 *            The character that delimits the fields
+	 *            The definition of each column a delimited string provided in
+	 *            the order they in the file.
+	 * @param aFactory
+	 *            A factory capable of building objects of type <code>T</code>
+	 *            from a {@link Map} of property values.
 	 * 
 	 * @since 1.0.0
 	 * 
 	 */
-	public DelimitedFileDataLoader(File aFile,
-			List<ColumnDefinition> theColumnDefinitions, char aDelimiter) {
+	public RecordParser(List<ColumnDefinition> theColumnDefinitions) {
 
 		super();
 
-		assert theColumnDefinitions != null
-				&& theColumnDefinitions.isEmpty() == false : format(
-				"%1$s(File, String, List) requires a non-empty column definition list.",
-				this.getClass().getName());
-
-		this.myFile = aFile;
-		this.myDelimiter = aDelimiter;
-		this.myParser = new RecordParser(theColumnDefinitions);
+		this.myColumnDefinitions = theColumnDefinitions;
 
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
-	 * @see net.cockamamy.fauxflix.DataLoader#loadData(java.io.File)
+	 * Parses the fields in the passed delimited string,
+	 * <code>aDelimitedString</code>, into a record represented as a {@link Map}
+	 * .
+	 * 
+	 * @param aDelimitedString
+	 *            The delimited string to parse into a record.
+	 * 
+	 * @return A record representing the data of the passed delimited string,
+	 *         <code>aDelimitedString</code>.
+	 *         
+	 * @since 1.0.0
+	 * 
 	 */
-	public final void loadData(DataLoaderConsumer aConsumer) {
+	public Map<String, Object> parse(final DelimitedString aDelimitedString) {
 
-		BufferedReader aReader = null;
+		final Map<String, Object> thePropertyValues = new HashMap<String, Object>();
 
-		try {
+		int aColumnNumber = 0;
+		for (String aFieldValue : aDelimitedString) {
 
-			aReader = new BufferedReader(new FileReader(this.myFile));
+			ColumnDefinition aColumnDefinition = this.myColumnDefinitions
+					.get(aColumnNumber);
 
-			while (aReader.ready()) {
+			thePropertyValues.put(aColumnDefinition.getPropertyName(),
+					aColumnDefinition.getConverter().convertValue(
+							aFieldValue.trim()));
 
-				aConsumer.consume(this.myParser.parse(new DelimitedString(
-						aReader.readLine(), this.myDelimiter)));
-
-			}
-
-		} catch (IOException e) {
-
-			throw new IllegalStateException(format(
-					"Failed to read delimited file %1$s.", this.myFile
-							.getPath()), e);
-
-		} finally {
-
-			close(aReader);
+			aColumnNumber++;
 
 		}
+
+		// Build the object from the Map and add it to the results ...
+		return unmodifiableMap(thePropertyValues);
 
 	}
 
 }
-
