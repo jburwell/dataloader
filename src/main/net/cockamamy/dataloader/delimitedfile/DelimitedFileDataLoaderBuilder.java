@@ -51,7 +51,7 @@ import net.cockamamy.dataloader.util.converter.*;
  */
 public final class DelimitedFileDataLoaderBuilder {
 
-	private static final char DEFAULT_DELIMITER = ',';
+	public static final char DEFAULT_DELIMITER = ',';
 
 	private File myInputFile;
 

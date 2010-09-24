@@ -45,7 +45,7 @@ import java.util.*;
  * @since 1.0.0
  * 
  */
-public final class RecordParser {
+final class RecordParser {
 
 	private final List<ColumnDefinition> myColumnDefinitions;
 

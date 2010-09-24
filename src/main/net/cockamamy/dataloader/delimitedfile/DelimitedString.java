@@ -158,7 +158,7 @@ public final class DelimitedString implements Iterable<String> {
 
 			this.myTokenizer = new StringTokenizer(aLine, String
 					.valueOf(aDelimiter));
-
+			
 		}
 
 		/*

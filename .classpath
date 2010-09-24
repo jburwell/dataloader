@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src/test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="tools/testng/testng-5.14.jar"/>
+	<classpathentry kind="lib" path="lib/test/guava-r07.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
