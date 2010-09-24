@@ -147,7 +147,6 @@ public final class DelimitedString implements Iterable<String> {
 				this.myDelimter, this.myValue);
 
 	}
-
 	// END: Object implementation
 
 	private static final class DelimitedLineIterator implements

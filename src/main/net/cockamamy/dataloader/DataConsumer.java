@@ -28,29 +28,30 @@
  */
 package net.cockamamy.dataloader;
 
+import java.util.*;
+
 /**
  * 
- * Loads data from a data source using a producer-consumer model.
+ * Consumes data loaded by a {@link DataLoader}. All implementations of this
+ * class should be thread-safe and re-entrant in order to allow
+ * {@link DataLoader} implementations to control threading.
  * 
  * @author jburwell
  * 
  * @since 1.0.0
  * 
  */
-public interface DataLoader {
+public interface DataConsumer {
 
 	/**
 	 * 
-	 * Loads data from a source and delegates consumption of the data to passed
-	 * consumer, <code>aConsumer</code>.
+	 * Processes a record loaded by a data loader.
 	 * 
-	 * @param aConsumer
-	 *            The consumer that will process data after it has been loaded
-	 *            from the data source.
+	 * @param aRecord A record loaded by a data loader.
 	 * 
 	 * @since 1.0.0
 	 * 
 	 */
-	void loadData(DataConsumer aConsumer);
+	void consume(Map<String, Object> aRecord);
 
 }

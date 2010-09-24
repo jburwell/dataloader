@@ -50,14 +50,16 @@ import net.cockamamy.dataloader.*;
  */
 final class DelimitedFileDataLoader implements DataLoader {
 
-	private final File myFile;
+	private final File myInputFile;
 
 	private final char myDelimiter;
 
 	private final RecordParser myParser;
 
 	/**
-	 * @param aFile
+	 * 
+	 * @param anInputFile
+	 *            The input file from which to load data
 	 * @param theColumnDefinitions
 	 *            The definition of each column a delimited file provided in the
 	 *            order they in the file.
@@ -67,17 +69,20 @@ final class DelimitedFileDataLoader implements DataLoader {
 	 * @since 1.0.0
 	 * 
 	 */
-	public DelimitedFileDataLoader(File aFile,
+	public DelimitedFileDataLoader(File anInputFile,
 			List<ColumnDefinition> theColumnDefinitions, char aDelimiter) {
 
 		super();
 
+		assert anInputFile != null : format(
+				"%1$s(File, String, List) requires a non-null file.", this
+						.getClass().getName());
 		assert theColumnDefinitions != null
 				&& theColumnDefinitions.isEmpty() == false : format(
 				"%1$s(File, String, List) requires a non-empty column definition list.",
 				this.getClass().getName());
 
-		this.myFile = aFile;
+		this.myInputFile = anInputFile;
 		this.myDelimiter = aDelimiter;
 		this.myParser = new RecordParser(theColumnDefinitions);
 
@@ -88,13 +93,13 @@ final class DelimitedFileDataLoader implements DataLoader {
 	 * 
 	 * @see net.cockamamy.fauxflix.DataLoader#loadData(java.io.File)
 	 */
-	public final void loadData(DataLoaderConsumer aConsumer) {
+	public final void loadData(DataConsumer aConsumer) {
 
 		BufferedReader aReader = null;
 
 		try {
 
-			aReader = new BufferedReader(new FileReader(this.myFile));
+			aReader = new BufferedReader(new FileReader(this.myInputFile));
 
 			while (aReader.ready()) {
 
@@ -106,7 +111,7 @@ final class DelimitedFileDataLoader implements DataLoader {
 		} catch (IOException e) {
 
 			throw new IllegalStateException(format(
-					"Failed to read delimited file %1$s.", this.myFile
+					"Failed to read delimited file %1$s.", this.myInputFile
 							.getPath()), e);
 
 		} finally {
@@ -118,4 +123,3 @@ final class DelimitedFileDataLoader implements DataLoader {
 	}
 
 }
-
