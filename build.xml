@@ -156,12 +156,10 @@
 		<property name="zip.root" value="${ant.project.name}-${global.version}" />
 		<zip destfile="${dist.zip.name}">
 
-			<zipfileset file="${jar.name}" prefix="${zip.root}" />
+			<zipfileset file="${dist.jar.name}" prefix="${zip.root}" />
 			<zipfileset dir="." file="README.md" prefix="${zip.root}" />
-			
-			<zipfileset dir="${global.src.dir}" prefix="${zip.root}/src" />
-			<zipfileset dir="." includes="build.xml" prefix="${zip.root}/src" />
-			
+			<zipfileset dir="." file="LICENSE" prefix="${zip.root}" />
+						
 			<zipfileset dir="${doc.dir.dest}" prefix="${zip.root}/doc" />
 		
 		</zip>

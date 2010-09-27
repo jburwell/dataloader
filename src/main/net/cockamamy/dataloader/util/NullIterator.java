@@ -32,6 +32,9 @@ import java.util.*;
 
 /**
  * 
+ * A null implementation of {@link Iterator} that behaves as an iterator over an
+ * empty collection.
+ * 
  * @author jburwell
  * 
  * @since 1.0.0

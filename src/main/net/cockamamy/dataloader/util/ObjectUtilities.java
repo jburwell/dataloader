@@ -29,41 +29,54 @@
 package net.cockamamy.dataloader.util;
 
 /**
- *
+ * 
+ * Generic utility methods for manipulating objects
+ * 
  * @author jburwell
- *
+ * 
  * @since 1.0.0
- *
+ * 
  */
 public final class ObjectUtilities {
 
-
 	private ObjectUtilities() {
-		
+
 		super();
-		
+
 		// Enforce utility class pattern ...
-		
+
 	}
-	
-	public static boolean isEqualTo(Object anObject, Object thatObject)
-	{
-		
-		if (anObject == thatObject)
-		{
-			
+
+	/**
+	 * 
+	 * A null-safe equal utility.
+	 * 
+	 * @param anObject
+	 *            The left-hand side of the equals comparison.
+	 * @param thatObject
+	 *            The right-hand side of the equals comparison.
+	 * 
+	 * @return <code>true</code>: The two passed objects are equal.
+	 *         <code>false</code>: The two passed objects are <b>not</b> equal.
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
+	public static boolean isEqualTo(Object anObject, Object thatObject) {
+
+		if (anObject == thatObject) {
+
 			return true;
 		}
 
-		if (anObject != null)
-		{
-			
+		if (anObject != null) {
+
 			return anObject.equals(thatObject);
-			
+
 		}
-		
+
 		return false;
-		
+
 	}
-	
+
 }

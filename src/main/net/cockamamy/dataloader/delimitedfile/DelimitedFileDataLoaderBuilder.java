@@ -165,14 +165,30 @@ public final class DelimitedFileDataLoaderBuilder {
 	 * 
 	 * @return A configured {@link DelimitedFileDataLoader} instance ready for
 	 *         use
-	 *
+	 * 
 	 * @since 1.0.0
 	 * 
 	 */
 	public DataLoader buildLoader() {
 
+		this.validate();
+
 		return new DelimitedFileDataLoader(this.myInputFile,
 				this.myColumnDefinitions, this.myDelimiter);
 
 	}
+
+	private void validate() {
+
+		if (this.myInputFile == null) {
+
+			throw new IllegalStateException(
+					"An input file must be specified in order to build a "
+							+ DelimitedFileDataLoader.class.getName()
+							+ " instance.");
+
+		}
+
+	}
+
 }

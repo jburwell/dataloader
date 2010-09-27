@@ -34,6 +34,8 @@ import static net.cockamamy.dataloader.util.ObjectUtilities.*;
 
 /**
  * 
+ * Represents an unrecoverable error during property conversion.
+ * 
  * @author jburwell
  * 
  * @since 1.0.0
@@ -47,6 +49,18 @@ public final class PropertyConversionException extends RuntimeException {
 	private final Class<?> myTargetType;
 	private final String myValue;
 
+	/**
+	 * 
+	 * @param aValue
+	 *            The value that failed to convert
+	 * @param aTargetType
+	 *            The type to which the value could not be converted
+	 * @param aCause
+	 *            The exception that caused the conversion failure
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
 	public PropertyConversionException(String aValue, Class<?> aTargetType,
 			Throwable aCause) {
 
@@ -63,6 +77,11 @@ public final class PropertyConversionException extends RuntimeException {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Throwable#getMessage()
+	 */
 	@Override
 	public String getMessage() {
 
@@ -70,18 +89,35 @@ public final class PropertyConversionException extends RuntimeException {
 
 	}
 
+	/**
+	 * 
+	 * @return The value that failed to convert.
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
 	public String getValue() {
 
 		return this.myValue;
 
 	}
 
+	/**
+	 * 
+	 * @return The type to which the value could not be converted
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
 	public Class<?> getTargetType() {
 
 		return this.myTargetType;
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object thatObject) {
 
@@ -105,6 +141,9 @@ public final class PropertyConversionException extends RuntimeException {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 

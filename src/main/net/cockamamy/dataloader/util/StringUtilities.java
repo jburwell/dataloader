@@ -28,6 +28,7 @@
  */
 package net.cockamamy.dataloader.util;
 
+
 /**
  * 
  * Utilities for managing {@link String}s.
@@ -93,16 +94,28 @@ public final class StringUtilities {
 
 	}
 
+	/**
+	 * 
+	 * Thunks a null or space-only {@link String} value to
+	 * {@link net.cockamamy.dataloader.util.StringUtilities#BLANK_STRING}.
+	 * 
+	 * @param aString
+	 *            The value to thunk
+	 * 
+	 * @return The thunked value
+	 * 
+	 * @since 1.0.0
+	 * 
+	 */
 	public static String toBlank(String aString) {
-	
-		if (isBlank(aString) == true)
-		{
-			
+
+		if (isBlank(aString) == true) {
+
 			return BLANK_STRING;
 		}
-		
+
 		return aString;
-		
+
 	}
-	
+
 }
