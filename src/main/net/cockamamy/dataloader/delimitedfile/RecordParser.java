@@ -28,6 +28,7 @@
  */
 package net.cockamamy.dataloader.delimitedfile;
 
+import static java.lang.String.*;
 import static java.util.Collections.*;
 
 import java.util.*;
@@ -80,25 +81,37 @@ final class RecordParser {
 	 * 
 	 * @return A record representing the data of the passed delimited string,
 	 *         <code>aDelimitedString</code>.
-	 *         
+	 * 
 	 * @since 1.0.0
 	 * 
 	 */
 	public Map<String, Object> parse(final DelimitedString aDelimitedString) {
 
 		final Map<String, Object> thePropertyValues = new HashMap<String, Object>();
-
 		int aColumnNumber = 0;
-		for (String aFieldValue : aDelimitedString) {
 
-			ColumnDefinition aColumnDefinition = this.myColumnDefinitions
-					.get(aColumnNumber);
+		try {
 
-			thePropertyValues.put(aColumnDefinition.getPropertyName(),
-					aColumnDefinition.getConverter().convertValue(
-							aFieldValue.trim()));
+			for (String aFieldValue : aDelimitedString) {
 
-			aColumnNumber++;
+				ColumnDefinition aColumnDefinition = this.myColumnDefinitions
+						.get(aColumnNumber);
+
+				thePropertyValues.put(
+						aColumnDefinition.getPropertyName(),
+						aColumnDefinition.getConverter().convertValue(
+								aFieldValue.trim()));
+
+				aColumnNumber++;
+
+			}
+
+		} catch (IndexOutOfBoundsException e) {
+
+			// TODO Consider defining a custom, unchecked exception ...
+			throw new IllegalStateException(format(
+					"Undefined column number %1$s. Columns defined: %2$s.",
+					aColumnNumber, this.myColumnDefinitions));
 
 		}
 

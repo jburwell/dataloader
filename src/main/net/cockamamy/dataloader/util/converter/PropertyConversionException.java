@@ -41,11 +41,10 @@ import static net.cockamamy.dataloader.util.ObjectUtilities.*;
  * @since 1.0.0
  * 
  */
-public final class PropertyConversionException extends RuntimeException {
+public abstract class PropertyConversionException extends RuntimeException {
 
 	private static final long serialVersionUID = 2152810331796105358L;
 
-	private final String myMessage;
 	private final Class<?> myTargetType;
 	private final String myValue;
 
@@ -62,30 +61,26 @@ public final class PropertyConversionException extends RuntimeException {
 	 * 
 	 */
 	public PropertyConversionException(String aValue, Class<?> aTargetType,
-			Throwable aCause) {
+			String aMessage, Throwable aCause) {
 
-		super();
+		super(aMessage, aCause);
 
 		assert aTargetType != null : format(
 				"%1$s(String, Class) requires a non-null target type",
 				PropertyConversionException.class.getName());
 
-		this.myMessage = format("Unable to convert %1$s to %2$s.", aValue,
-				aTargetType.getName());
 		this.myTargetType = aTargetType;
 		this.myValue = aValue;
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Throwable#getMessage()
-	 */
-	@Override
-	public String getMessage() {
+	public PropertyConversionException(String aValue, Class<?> aTargetType,
+			String aMessage) {
 
-		return this.myMessage;
+		super(aMessage);
+
+		this.myTargetType = aTargetType;
+		this.myValue = aValue;
 
 	}
 
@@ -96,7 +91,7 @@ public final class PropertyConversionException extends RuntimeException {
 	 * @since 1.0.0
 	 * 
 	 */
-	public String getValue() {
+	public final String getValue() {
 
 		return this.myValue;
 
@@ -109,17 +104,19 @@ public final class PropertyConversionException extends RuntimeException {
 	 * @since 1.0.0
 	 * 
 	 */
-	public Class<?> getTargetType() {
+	public final Class<?> getTargetType() {
 
 		return this.myTargetType;
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object thatObject) {
+	public final boolean equals(Object thatObject) {
 
 		if (thatObject != null
 				&& PropertyConversionException.class.equals(thatObject
@@ -129,9 +126,9 @@ public final class PropertyConversionException extends RuntimeException {
 
 			if (isEqualTo(this.myTargetType, thatException.getTargetType()) == true
 					&& isEqualTo(this.myValue, thatException.getValue()) == true
-					&& isEqualTo(this.myMessage, thatException.getMessage()) == true) {
+					&& isEqualTo(this.getMessage(), thatException.getMessage()) == true) {
 
-				return true;
+				return this.determineEquality(thatException);
 
 			}
 
@@ -141,20 +138,36 @@ public final class PropertyConversionException extends RuntimeException {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
-	public int hashCode() {
+	public final int hashCode() {
 
 		int aValue = 37;
 
 		aValue += (aValue * 17) + this.myTargetType.hashCode();
-		aValue += (aValue * 17) + this.myMessage.hashCode();
+		aValue += (aValue * 17) + this.getMessage().hashCode();
 		aValue += (aValue * 17) + this.myValue != null ? this.myValue
 				.hashCode() : 0;
 
+		aValue = this.calculateHashCode(aValue);
+
 		return aValue;
+
+	}
+
+	protected boolean determineEquality(PropertyConversionException thatObject) {
+
+		return true;
+
+	}
+
+	protected int calculateHashCode(final int aHashCode) {
+
+		return aHashCode;
 
 	}
 

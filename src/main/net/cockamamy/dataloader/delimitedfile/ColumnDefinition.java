@@ -107,15 +107,14 @@ public final class ColumnDefinition {
 
 		boolean aReturnValue = false;
 
-		if (thatObject != null
-				&& this.getClass().equals(thatObject.getClass()) == true) {
+		if (thatObject != null && this.getClass().equals(thatObject.getClass())) {
 
 			ColumnDefinition thatColumnDefinition = (ColumnDefinition) thatObject;
 
 			if (this.myPropertyName.equals(thatColumnDefinition
-					.getPropertyName()) == true
+					.getPropertyName())
 					&& this.myConverter.equals(thatColumnDefinition
-							.getConverter()) == true) {
+							.getConverter())) {
 
 				aReturnValue = true;
 

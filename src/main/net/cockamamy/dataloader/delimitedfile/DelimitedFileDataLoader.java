@@ -111,8 +111,8 @@ final class DelimitedFileDataLoader implements DataLoader {
 		} catch (IOException e) {
 
 			throw new IllegalStateException(format(
-					"Failed to read delimited file %1$s.", this.myInputFile
-							.getPath()), e);
+					"Failed to read delimited file %1$s.",
+					this.myInputFile.getPath()), e);
 
 		} finally {
 
