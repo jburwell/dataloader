@@ -30,9 +30,14 @@ package net.cockamamy.dataloader.util.converter;
 
 import static java.util.Calendar.*;
 
+import static net.cockamamy.dataloader.util.StringUtilities.*;
+
+import java.text.*;
 import java.util.*;
 
 import org.testng.annotations.*;
+
+import com.google.common.collect.*;
 
 /**
  * 
@@ -43,12 +48,20 @@ import org.testng.annotations.*;
  */
 @Test
 public final class DatePropertyConverterTest extends
-		AbstractPropertyConverterTest<Date, DatePropertyConverter> {
+		AbstractPropertyConverterTest<Date> {
 
-	@Override
-	protected DatePropertyConverter createPropertyConverter() {
+	private Date myReferenceDate;
 
-		return new DatePropertyConverter();
+	@BeforeClass
+	public void setup() {
+
+		final Calendar aCalendar = Calendar.getInstance();
+
+		aCalendar.set(2008, 0, 1, 0, 0);
+		aCalendar.set(SECOND, 0);
+		aCalendar.set(MILLISECOND, 0);
+
+		this.myReferenceDate = aCalendar.getTime();
 
 	}
 
@@ -59,35 +72,35 @@ public final class DatePropertyConverterTest extends
 	 * provideConvertValueData()
 	 */
 	@Override
-	protected Object[][] buildConvertValueSuccessData() {
+	protected ImmutableList<TestScenario> buildConvertValueSuccessData() {
 
-		Object[][] theData = new Object[3][2];
+		final ImmutableList.Builder<TestScenario> aBuilder = ImmutableList
+				.builder();
+		final DateFormat aDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		final DatePropertyConverter aPropertyConverter = new DatePropertyConverter(
+				aDateFormat);
 
-		Calendar aCalendar = Calendar.getInstance();		
-		aCalendar.set(2008, 0, 1, 0, 0);
-		aCalendar.set(SECOND, 0);
-		aCalendar.set(MILLISECOND, 0);
+		aBuilder.add(new TestScenario(aDateFormat.format(this.myReferenceDate),
+				aPropertyConverter, this.myReferenceDate));
+		aBuilder.add(new TestScenario(null, aPropertyConverter, null));
+		aBuilder.add(new TestScenario(BLANK_STRING, aPropertyConverter, null));
 
-		theData[0][0] = "01/01/2008";
-		theData[0][1] = aCalendar.getTime();
-
-		theData[1][0] = null;
-		theData[1][1] = null;
-		
-		theData[2][0] = "";
-		theData[2][1] = null;
-		
-		return theData;
+		return aBuilder.build();
 
 	}
 
 	@Override
-	protected Object[][] buildConvertValueFailureData() {
-		
-		return new Object[][] {
-				{ "aaa", "1/1/2008" }
-		};
-		
+	protected ImmutableList<TestScenario> buildConvertValueFailureData() {
+
+		final ImmutableList.Builder<TestScenario> aBuilder = ImmutableList
+				.builder();
+		final DatePropertyConverter aPropertyConverter = new DatePropertyConverter();
+
+		aBuilder.add(new TestScenario("aaa", aPropertyConverter,
+				this.myReferenceDate));
+
+		return aBuilder.build();
+
 	}
 
 }

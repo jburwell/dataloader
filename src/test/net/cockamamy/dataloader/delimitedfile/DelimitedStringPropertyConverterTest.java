@@ -29,21 +29,20 @@
 package net.cockamamy.dataloader.delimitedfile;
 
 import static net.cockamamy.dataloader.delimitedfile.DelimitedFileDataLoaderBuilder.*;
-import static net.cockamamy.dataloader.delimitedfile.DelimitedStringPropertyConverterTest.*;
 
 import java.util.*;
 
-import org.testng.annotations.*;
-
+import net.cockamamy.dataloader.delimitedfile.DelimitedStringPropertyConverter.ObjectFactory;
 import net.cockamamy.dataloader.util.converter.*;
+
+import org.testng.annotations.*;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
 
 @Test
-public final class DelimitedStringPropertyConverterTest
-		extends
-		AbstractPropertyConverterTest<MockBean, DelimitedStringPropertyConverter<MockBean>> {
+public final class DelimitedStringPropertyConverterTest extends
+		AbstractPropertyConverterTest<DelimitedStringPropertyConverterTest.MockBean> {
 
 	private static final String DESCRIPTION_PROP_NAME = "description";
 
@@ -53,36 +52,36 @@ public final class DelimitedStringPropertyConverterTest
 
 	private static final String DESCRIPTION_VALUE = "a very common name";
 
-	@Override
-	protected Object[][] buildConvertValueSuccessData() {
-		
-		return new Object[][] { {
-				Joiner.on(DEFAULT_DELIMITER)
-						.join(NAME_VALUE, DESCRIPTION_VALUE),
-				new MockBean(NAME_VALUE, DESCRIPTION_VALUE) } };
-		
-	}
+	private static final ImmutableList<ColumnDefinition> COLUMNS = ImmutableList
+			.of(new ColumnDefinition(NAME_PROP_NAME,
+					new StringPropertyConverter()), new ColumnDefinition(
+					DESCRIPTION_PROP_NAME, new StringPropertyConverter()));
+
+	private static final ObjectFactory<MockBean> FACTORY = new DelimitedStringPropertyConverter.ObjectFactory<MockBean>() {
+
+		public MockBean createObject(Map<String, Object> thePropertyValues) {
+
+			return new MockBean((String) thePropertyValues.get(NAME_PROP_NAME),
+					(String) thePropertyValues.get(DESCRIPTION_PROP_NAME));
+
+		}
+
+	};
 
 	@Override
-	protected DelimitedStringPropertyConverter<MockBean> createPropertyConverter() {
+	protected ImmutableList<TestScenario> buildConvertValueSuccessData() {
 
-		return new DelimitedStringPropertyConverter<MockBean>(ImmutableList.of(
-				new ColumnDefinition(NAME_PROP_NAME,
-						new StringPropertyConverter()), new ColumnDefinition(
-						DESCRIPTION_PROP_NAME, new StringPropertyConverter())),
-				DEFAULT_DELIMITER, new DelimitedStringPropertyConverter.ObjectFactory<MockBean>() {
+		final ImmutableList.Builder<TestScenario> aBuilder = ImmutableList
+				.builder();
+		final DelimitedStringPropertyConverter<MockBean> aPropertyConverter = new DelimitedStringPropertyConverter<MockBean>(
+				COLUMNS, DEFAULT_DELIMITER, FACTORY);
+		final MockBean aMockBean = new MockBean(NAME_VALUE, DESCRIPTION_VALUE);
 
-					public MockBean createObject(
-							Map<String, Object> thePropertyValues) {
+		aBuilder.add(new TestScenario(Joiner.on(
+				aPropertyConverter.getDelimiter()).join(aMockBean.getName(),
+				aMockBean.getDescription()), aPropertyConverter, aMockBean));
 
-						return new MockBean((String) thePropertyValues
-								.get(NAME_PROP_NAME),
-								(String) thePropertyValues
-										.get(DESCRIPTION_PROP_NAME));
-
-					}
-
-				});
+		return aBuilder.build();
 
 	}
 

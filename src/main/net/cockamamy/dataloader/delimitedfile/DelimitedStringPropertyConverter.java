@@ -88,6 +88,33 @@ public final class DelimitedStringPropertyConverter<T> implements
 
 	}
 
+	public char getDelimiter() {
+		
+		return this.myDelimiter;
+		
+	}
+
+	public RecordParser getBuilder() {
+		
+		return this.myBuilder;
+		
+	}
+
+	public ObjectFactory<T> getFactory() {
+		
+		return this.myFactory;
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public DelimitedStringPropertyConverter(
+			List<ColumnDefinition> theColumnDefinitions, char aDelimiter) {
+
+		this(theColumnDefinitions, aDelimiter,
+				(ObjectFactory<T>) new NullObjectFactory());
+		
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -144,6 +171,35 @@ public final class DelimitedStringPropertyConverter<T> implements
 		 * 
 		 */
 		T createObject(Map<String, Object> thePropertyValues);
+
+	}
+
+	/**
+	 * 
+	 * A null implementation of the {@link ObjectFactory} interface that returns
+	 * the input map as the created object.
+	 * 
+	 * @author jburwell
+	 * 
+	 * @since 1.0.2
+	 * 
+	 */
+	public static class NullObjectFactory implements
+			ObjectFactory<Map<String, Object>> {
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * net.cockamamy.dataloader.delimitedfile.DelimitedStringPropertyConverter
+		 * .ObjectFactory#createObject(java.util.Map)
+		 */
+		public Map<String, Object> createObject(
+				Map<String, Object> thePropertyValues) {
+
+			return thePropertyValues;
+
+		}
 
 	}
 

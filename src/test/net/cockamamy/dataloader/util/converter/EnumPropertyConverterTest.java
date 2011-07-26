@@ -33,6 +33,8 @@ import static net.cockamamy.dataloader.util.converter.MockEnum.*;
 
 import org.testng.annotations.*;
 
+import com.google.common.collect.*;
+
 /**
  * 
  * @author jburwell
@@ -41,9 +43,18 @@ import org.testng.annotations.*;
  * 
  */
 @Test
-public final class EnumPropertyConverterTest
-		extends
-		AbstractPropertyConverterTest<MockEnum, EnumPropertyConverter<MockEnum>> {
+public final class EnumPropertyConverterTest extends
+		AbstractPropertyConverterTest<MockEnum> {
+
+	private EnumPropertyConverter<MockEnum> myPropertyConverter;
+
+	@BeforeClass
+	public void setup() {
+
+		this.myPropertyConverter = new EnumPropertyConverter<MockEnum>(
+				MockEnum.class);
+
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -52,37 +63,30 @@ public final class EnumPropertyConverterTest
 	 * buildConvertValueSuccessData()
 	 */
 	@Override
-	protected Object[][] buildConvertValueSuccessData() {
+	protected ImmutableList<TestScenario> buildConvertValueSuccessData() {
 
-		return new Object[][] {
+		final ImmutableList.Builder<TestScenario> aBuilder = ImmutableList
+				.builder();
 
-		{ "FOO", FOO }, { "BAR", BAR }, { BLANK_STRING, null }, { null, null }
+		aBuilder.add(new TestScenario("FOO", this.myPropertyConverter, FOO));
+		aBuilder.add(new TestScenario("BAR", this.myPropertyConverter, BAR));
+		aBuilder.add(new TestScenario(BLANK_STRING, this.myPropertyConverter,
+				null));
+		aBuilder.add(new TestScenario(null, this.myPropertyConverter, null));
 
-		};
+		return aBuilder.build();
 
 	}
 
 	@Override
-	protected Object[][] buildConvertValueFailureData() {
+	protected ImmutableList<TestScenario> buildConvertValueFailureData() {
 
-		return new Object[][] {
+		final ImmutableList.Builder<TestScenario> aBuilder = ImmutableList
+				.builder();
 
-		{ "ZOO" }
+		aBuilder.add(new TestScenario("ZOO", this.myPropertyConverter, null));
 
-		};
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see net.cockamamy.fauxflix.util.mapper.AbstractPropertyConverterTest#
-	 * createPropertyConverter()
-	 */
-	@Override
-	protected EnumPropertyConverter<MockEnum> createPropertyConverter() {
-
-		return new EnumPropertyConverter<MockEnum>(MockEnum.class);
+		return aBuilder.build();
 
 	}
 

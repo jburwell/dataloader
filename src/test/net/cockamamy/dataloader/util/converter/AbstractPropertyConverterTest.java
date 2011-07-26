@@ -32,6 +32,8 @@ import static org.testng.Assert.*;
 
 import org.testng.annotations.*;
 
+import com.google.common.collect.*;
+
 /**
  * 
  * @author jburwell
@@ -39,58 +41,76 @@ import org.testng.annotations.*;
  * @since 1.0.0
  * 
  */
-public abstract class AbstractPropertyConverterTest<T, P extends PropertyConverter<T>> {
+public abstract class AbstractPropertyConverterTest<T> {
 
 	private static final String CONVERT_VALUE_SUCCESS_PROVIDER = "convert_value_success_provider";
 
 	private static final String CONVERT_VALUE_FAILURE_PROVIDER = "convert_value_failure_provider";
 
-	private P myPropertyConverter = null;
-
-	@BeforeClass
-	public final void setup() {
-
-		this.doBeforeSetup();
-
-		this.myPropertyConverter = this.createPropertyConverter();
-
-		assert this.myPropertyConverter != null;
-		
-	}
-
-	protected void doBeforeSetup() {
-		
-		// Do nothing by default
-		
-	}
-
 	@Test(dataProvider = CONVERT_VALUE_SUCCESS_PROVIDER)
-	public final void testConvertValueSuccess(String aValue, T aResult) {
+	public final void testConvertValueSuccess(String aValue,
+			PropertyConverter<T> aPropertyConverter, T aResult) {
 
-		assertEquals(this.myPropertyConverter.convertValue(aValue), aResult);
+		assertEquals(aPropertyConverter.convertValue(aValue), aResult);
 
 	}
 
 	@Test(dataProvider = CONVERT_VALUE_FAILURE_PROVIDER, expectedExceptions = PropertyConversionException.class)
-	public final void testConvertValueFailure(String aValue) {
+	public final void testConvertValueFailure(String aValue,
+			PropertyConverter<T> aPropertyConverter) {
 
-		this.myPropertyConverter.convertValue(aValue);
+		aPropertyConverter.convertValue(aValue);
 
 	}
-
-	protected abstract P createPropertyConverter();
 
 	@DataProvider(name = CONVERT_VALUE_SUCCESS_PROVIDER)
 	public final Object[][] provideConvertValueSuccessData() {
 
-		return buildConvertValueSuccessData();
+		final ImmutableList<TestScenario> theScenarios = this
+				.buildConvertValueSuccessData();
+		final Object[][] theData = new Object[theScenarios.size()][3];
+
+		int i = 0;
+		for (TestScenario aScenario : theScenarios) {
+
+			theData[i] = new Object[] {
+
+			aScenario.getValue(), aScenario.getPropertyConverter(),
+					aScenario.getExpectedResult()
+
+			};
+
+			i++;
+
+		}
+
+		return theData;
 
 	}
 
 	@DataProvider(name = CONVERT_VALUE_FAILURE_PROVIDER)
 	public final Object[][] provideConvertValueFailureData() {
 
-		return buildConvertValueFailureData();
+		final ImmutableList<TestScenario> theScenarios = this
+				.buildConvertValueFailureData();
+
+		final Object[][] theData = new Object[theScenarios.size()][2];
+
+		int i = 0;
+		for (TestScenario aScenario : theScenarios) {
+
+			// Is this necessary?
+			theData[i] = new Object[] {
+
+			aScenario.getValue(), aScenario.getPropertyConverter()
+
+			};
+
+			i++;
+
+		}
+
+		return theData;
 
 	}
 
@@ -101,9 +121,9 @@ public abstract class AbstractPropertyConverterTest<T, P extends PropertyConvert
 	 * @since 1.0.0
 	 * 
 	 */
-	protected Object[][] buildConvertValueFailureData() {
+	protected ImmutableList<TestScenario> buildConvertValueFailureData() {
 
-		return new Object[][] {};
+		return ImmutableList.of();
 
 	}
 
@@ -114,6 +134,45 @@ public abstract class AbstractPropertyConverterTest<T, P extends PropertyConvert
 	 * @since 1.0.0
 	 * 
 	 */
-	protected abstract Object[][] buildConvertValueSuccessData();
+	protected abstract ImmutableList<TestScenario> buildConvertValueSuccessData();
+
+	public final class TestScenario {
+
+		private final PropertyConverter<T> myPropertyConverter;
+
+		private final String myValue;
+
+		private final T myExpectedResult;
+
+		public TestScenario(String aValue,
+				PropertyConverter<T> aPropertyConverter, T anExpectedResult) {
+
+			super();
+
+			this.myValue = aValue;
+			this.myPropertyConverter = aPropertyConverter;
+			this.myExpectedResult = anExpectedResult;
+
+		}
+
+		public final PropertyConverter<T> getPropertyConverter() {
+
+			return this.myPropertyConverter;
+
+		}
+
+		public final String getValue() {
+
+			return this.myValue;
+
+		}
+
+		public final T getExpectedResult() {
+
+			return this.myExpectedResult;
+
+		}
+
+	}
 
 }

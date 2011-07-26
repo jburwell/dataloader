@@ -35,7 +35,7 @@
 	<property name="global.report.dir" value="${global.build.dir}/report" />
 	<property name="global.src.dir" value="src" />
 	<property name="global.tools.dir" value="tools" />
-	<property name="global.version" value="1.0.0" />
+	<property name="global.version" value="1.0.1" />
 
 	<property name="compile.dir.main" value="${global.src.dir}/main"/>
 	<property name="compile.dir.test" value="${global.src.dir}/test"/>

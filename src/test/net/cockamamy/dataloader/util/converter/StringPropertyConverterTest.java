@@ -28,43 +28,43 @@
  */
 package net.cockamamy.dataloader.util.converter;
 
+import static net.cockamamy.dataloader.util.StringUtilities.*;
+
 import org.testng.annotations.*;
 
+import com.google.common.collect.*;
+
 /**
- *
+ * 
  * @author jburwell
- *
+ * 
  * @since 1.0.0
- *
+ * 
  */
 @Test
 public final class StringPropertyConverterTest extends
-		AbstractPropertyConverterTest<String, StringPropertyConverter> {
+		AbstractPropertyConverterTest<String> {
 
-	/* (non-Javadoc)
-	 * @see net.cockamamy.fauxflix.util.csv.AbstractPropertyConverterTest#buildConvertValueSuccessData()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see net.cockamamy.fauxflix.util.csv.AbstractPropertyConverterTest#
+	 * buildConvertValueSuccessData()
 	 */
 	@Override
-	protected Object[][] buildConvertValueSuccessData() {
-		
-		return new Object[][] {
-			
-				{"foo", "foo"},
-				{null, null},
-				{"", ""}
-				
-		};
-		
-	}
+	protected ImmutableList<TestScenario> buildConvertValueSuccessData() {
 
-	/* (non-Javadoc)
-	 * @see net.cockamamy.fauxflix.util.csv.AbstractPropertyConverterTest#createPropertyConverter()
-	 */
-	@Override
-	protected StringPropertyConverter createPropertyConverter() {
-		
-		return new StringPropertyConverter();
-		
+		final ImmutableList.Builder<TestScenario> aBuilder = ImmutableList
+				.builder();
+		final StringPropertyConverter aPropertyConverter = new StringPropertyConverter();
+
+		aBuilder.add(new TestScenario("foo", aPropertyConverter, "foo"));
+		aBuilder.add(new TestScenario(null, aPropertyConverter, null));
+		aBuilder.add(new TestScenario(BLANK_STRING, aPropertyConverter,
+				BLANK_STRING));
+
+		return aBuilder.build();
+
 	}
 
 }
