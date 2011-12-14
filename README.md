@@ -6,7 +6,7 @@ dataloader is a simple producer-consumer framework to load data from a source in
 
 The `DelimitedFileDataLoader` loads data from a file containing data delimited by a single character (e.g. comma, pipe, tab, etc).  It assumes that each row in the file represents a single object or entity.  Each column in the file is described using a `ColumnDefinition` that specifies the target property name and a `PropertyConverter` to transform the input string into its object representation.
 
-## Configuring `DelimitedFileDataLoader`
+## Configuring DelimitedFileDataLoader
 
 The `DelimitedFileDataLoaderBuilder` configures the following `DelimitedFileDataLoader` options:
 
