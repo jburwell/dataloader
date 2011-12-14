@@ -32,7 +32,12 @@ import static java.lang.String.*;
 
 import static net.cockamamy.dataloader.util.StringUtilities.*;
 
+import static org.slf4j.LoggerFactory.*;
+
 import java.io.*;
+
+import org.slf4j.*;
+
 
 /**
  * 
@@ -45,6 +50,8 @@ import java.io.*;
  */
 public final class FileUtilities {
 
+	private static final Logger LOGGER = getLogger(FileUtilities.class); 
+	
 	private FileUtilities() {
 
 		super();
@@ -111,10 +118,7 @@ public final class FileUtilities {
 
 		} catch (IOException e) {
 
-			System.err
-					.println(format(
-							"Failed to close the buffered reader due to exception %1$s",
-							e));
+			LOGGER.error("Failed to close buffered reader.", e);
 
 		}
 

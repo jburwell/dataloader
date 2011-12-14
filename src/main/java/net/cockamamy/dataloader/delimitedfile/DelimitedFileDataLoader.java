@@ -31,11 +31,15 @@ package net.cockamamy.dataloader.delimitedfile;
 import static java.lang.String.*;
 
 import static net.cockamamy.dataloader.util.FileUtilities.*;
+import static org.slf4j.LoggerFactory.*;
 
 import java.io.*;
 import java.util.*;
 
+import org.slf4j.*;
+
 import net.cockamamy.dataloader.*;
+import net.cockamamy.dataloader.util.*;
 
 /**
  * 
@@ -49,6 +53,8 @@ import net.cockamamy.dataloader.*;
  * 
  */
 final class DelimitedFileDataLoader implements DataLoader {
+
+	private static final Logger LOGGER = getLogger(FileUtilities.class);
 
 	private final File myInputFile;
 
@@ -96,18 +102,25 @@ final class DelimitedFileDataLoader implements DataLoader {
 	public final void loadData(DataConsumer aConsumer) {
 
 		BufferedReader aReader = null;
-
+		
 		try {
+
+			LOGGER.info("Reading {} using the {} delimiter.",
+					this.myInputFile.getCanonicalPath(), this.myDelimiter);
 
 			aReader = new BufferedReader(new FileReader(this.myInputFile));
 
+			long aRecordCount = 0;
 			while (aReader.ready()) {
 
 				aConsumer.consume(this.myParser.parse(new DelimitedString(
 						aReader.readLine(), this.myDelimiter)));
+				aRecordCount++;
 
 			}
 
+			LOGGER.info("Completed loading {} records from {}.", aRecordCount, this.myInputFile.getCanonicalPath());
+			
 		} catch (IOException e) {
 
 			throw new IllegalStateException(format(
