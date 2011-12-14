@@ -1,0 +1,141 @@
+/*
+
+ Copyright (c) 2008-2011, John Burwell
+  
+ All rights reserved.
+  
+ Redistribution and use in source and binary forms, with or without modification, are
+ permitted provided that the following conditions are met:
+  
+	 * Redistributions of source code must retain the above copyright notice, this list of
+	   conditions and the following disclaimer.
+	 * Redistributions in binary form must reproduce the above copyright notice, this list of
+	   conditions and the following disclaimer in the documentation and/or other materials
+	   provided with the distribution.
+	 * Neither the name of the John Burwell nor the names of its contributors may be used to
+	   endorse or promote products derived from this software without specific prior written
+	   permission.
+	 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+  
+*/
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+version = '1.1.0'
+
+repositories {
+	mavenRepo name: 'third-party-libs-repo', url: "http://nebula.cockamamy.net/repo/remote-repos"
+}
+ 
+dependencies {
+	compile group: 'com.google.guava', name: 'guava', version: '10.0.1'	
+	testCompile group: 'org.testng', name: 'testng', version: '6.2'
+}
+
+configure(install.repositories.mavenInstaller) {
+	pom.project {
+		version "${version}"
+		artifactId 'dataloader'
+		groupId 'net.cockamamy'
+		packaging 'jar'
+		description 'Framework to load data from character delimited files.'
+		url 'http://github.com/jburwell/dataloader'
+		inceptionYear '2010'
+ 
+		scm {
+			url 'scm:git:http://github.com/jburwell/dataloader'
+			connection 'scm:git:http://github.com/jburwell/dataloader'
+		}
+				
+	  	licenses {
+			license {
+				name 'Berkley Software Distribution'
+				// TODO: Cat the contents of LICENSE into the POM ...
+				comments """
+				/**
+                Copyright (c) 2010, John Burwell
+                All rights reserved.
+
+                Redistribution and use in source and binary forms, with or without 
+                modification, are permitted provided that the following conditions are met:
+
+                    * Redistributions of source code must retain the above copyright notice, 
+                      this list of conditions and the following disclaimer.
+                    * Redistributions in binary form must reproduce the above copyright notice, 
+                      this list of conditions and the following disclaimer in the documentation 
+                      and/or other materials provided with the distribution.
+                    * Neither the name of the John Burwell nor the names of its contributors 
+                      may be used to endorse or promote products derived from this software 
+                      without specific prior written permission.
+
+                THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+                AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+                IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+                ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+                LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+                CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+                SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+                INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+                CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+                ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+                POSSIBILITY OF SUCH DAMAGE.
+				**/
+				"""
+				distribution 'repo'
+			}
+		}
+	}
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main'
+		}
+	}
+	test {
+		java {
+			srcDir 'src/test'
+		}
+	}
+}
+
+test {
+	useTestNG()
+}
+
+task dist(type: Zip) {
+
+	dependsOn jar	
+	dependsOn javadoc
+	
+	exclude '**/resources/**'
+	
+	from jar.archivePath
+	from 'LICENSE'
+	from 'README.md'
+
+	into('docs') {
+		from "${docsDir}/javadoc"
+	}
+	 
+	into('lib') { 
+		from configurations.runtime
+	}
+}
+
+artifacts {
+	archives dist
+}
