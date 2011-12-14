@@ -3,8 +3,8 @@
 /test-output
 .DS_Store
 *.class
-/test-output
 /.gradle
 .project
 .classpath
+/.settings
 

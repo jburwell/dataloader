@@ -117,6 +117,10 @@ task dist(type: Zip) {
 	from 'LICENSE'
 	from 'README.md'
 
+	into('conf') {
+		from sourceSets.main.output.resourcesDir
+	}
+	
 	into('docs') {
 		from "${docsDir}/javadoc"
 	}
