@@ -1,4 +1,4 @@
-# Instruction
+# Introduction
 
 dataloader is a simple producer-consumer framework to load data from a source into a target repository.  DataLoaders read data from a source into a record (represented as a `Map<String,Object>`) and pass each record to a `DataConsumer` for processing (e.g. transformation and load into a database).  The `DelimitedFileDataLoader` loads and parses data from a delimited file.
 
