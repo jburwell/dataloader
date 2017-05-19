@@ -1,6 +1,6 @@
 /*
 
- Copyright (c) 2008-2011, John Burwell
+ Copyright (c) 2012-2017, John Burwell
   
  All rights reserved.
   
@@ -31,14 +31,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 version = '1.1.0'
 
 repositories {
-    mavenRepo name: 'third-party-libs-repo', url: "https://nebula.cockamamy.net/repo/remote-repos"
+    jcenter()
 }
- 
+
 dependencies {
     compile 'com.google.guava:guava:10.0.1'
     compile 'org.slf4j:slf4j-api:1.6.4'
@@ -56,12 +56,12 @@ configure(install.repositories.mavenInstaller) {
         description 'Framework to load data from character delimited files.'
         url 'http://github.com/jburwell/dataloader'
         inceptionYear '2010'
- 
+
         scm {
             url 'scm:git:http://github.com/jburwell/dataloader'
             connection 'scm:git:http://github.com/jburwell/dataloader'
         }
-                
+
         licenses {
             license {
                 name 'Berkley Software Distribution'

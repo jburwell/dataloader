@@ -1,11 +1,3 @@
-/bin
-/build
-/test-output
-.DS_Store
-*.class
-/.gradle
-.project
-.classpath
-/.settings
-*.jar
+build
+.gradle
 
